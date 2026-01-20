@@ -7,8 +7,28 @@ Cross-chain token bridge between Ethereum (localhost) and Sui (devnet).
 - Node.js and npm
 - Foundry: https://book.getfoundry.sh/getting-started/installation
 - Sui CLI: https://docs.sui.io/build/install
-- MetaMask browser extension
-- Sui Wallet browser extension
+
+### Install Wallet Extensions
+
+**MetaMask (for Ethereum)**
+1. Go to https://metamask.io/download/
+2. Click "Install MetaMask for Chrome" (or your browser)
+3. Click "Add to Chrome" and confirm
+4. Create a new wallet or import existing one
+5. Complete setup and save your seed phrase securely
+
+**Sui Wallet (for Sui)**
+
+Choose one of these wallet extensions:
+- **Slush Wallet**: Search "Slush Wallet" in Chrome Web Store
+- **Suiet Wallet**: Search "Suiet" in Chrome Web Store
+
+Installation steps:
+1. Go to Chrome Web Store
+2. Search "Slush Wallet" or "Suiet"
+3. Click "Add to Chrome" and confirm
+4. Create a new wallet or import existing one
+5. Complete setup and save your seed phrase securely
 
 ## Quick Start
 
@@ -39,23 +59,63 @@ No need to start Sui - devnet is public and always running.
 
 ### 4. Configure MetaMask
 
-Add network:
-- Network Name: Anvil Localhost
-- RPC URL: http://127.0.0.1:8545
-- Chain ID: 31337
+**Add Custom Network for Anvil Localhost:**
+1. Open MetaMask extension
+2. Click network dropdown at top (usually says "Ethereum Mainnet")
+3. Click "Add network" or "Add network manually"
+4. Fill in the following details:
+   - Network Name: Anvil Localhost
+   - New RPC URL: http://127.0.0.1:8545
+   - Chain ID: 31337
+   - Currency Symbol: ETH
+5. Click "Save"
+6. Switch to "Anvil Localhost" network
 
-Import account:
-- Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+**Import Test Account:**
+1. Click account icon (top right)
+2. Click "Import Account"
+3. Select "Private Key"
+4. Paste: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+5. Click "Import"
+6. Account should show ~10000 ETH balance
 
-Import IBT token:
-- Token Address: (from deploy.sh output or App.jsx)
-- Symbol: IBT
-- Decimals: 18
+**Import IBT Token:**
+1. In MetaMask, scroll down and click "Import tokens"
+2. Paste Token Address: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+3. Token Symbol (IBT) and Decimals (18) should auto-fill
+4. Click "Add custom token" then "Import"
+5. You should see 1000 IBT balance
 
 ### 5. Configure Sui Wallet
 
-- Switch network to Devnet
-- Verify address: 0x1476da5ccef9917f4ecd4a7494522154f82bb231fab974e81a20fad8e5938b0e
+**Switch to Devnet:**
+1. Open Sui Wallet extension
+2. Click settings icon (gear icon, usually top right)
+3. Click "Network"
+4. Select "Devnet" from the list
+5. Close settings
+
+**Verify/Import Account:**
+1. If you already have a Sui wallet, verify your address matches:
+   - Expected: 0x1476da5ccef9917f4ecd4a7494522154f82bb231fab974e81a20fad8e5938b0e
+2. If you need to import:
+   - Click account menu
+   - Select "Import Private Key" or "Import Passphrase"
+   - Enter your Sui CLI wallet passphrase or private key
+   - Confirm import
+
+**Get Devnet SUI (Gas):**
+
+You need SUI tokens to pay for transaction fees (gas) on the Sui blockchain. Since we're using devnet (test network), you can get free test SUI:
+
+1. Open your Sui wallet and copy your address
+2. Go to https://discord.com/invite/sui
+3. Join Sui Discord server
+4. Go to #devnet-faucet channel
+5. Type: !faucet YOUR_SUI_ADDRESS
+6. Wait for confirmation - you'll receive devnet SUI for gas fees
+
+Note: You need gas to execute any transaction on Sui (minting, burning, transferring). Without SUI for gas, the bridge won't work.
 
 ### 6. Start Web Application
 
