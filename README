@@ -1,0 +1,107 @@
+# Blockchain Bridge - Ethereum to Sui
+
+Cross-chain token bridge between Ethereum (localhost) and Sui (devnet).
+
+## Prerequisites
+
+- Node.js and npm
+- Foundry: https://book.getfoundry.sh/getting-started/installation
+- Sui CLI: https://docs.sui.io/build/install
+- MetaMask browser extension
+- Sui Wallet browser extension
+
+## Quick Start
+
+### 1. Start Ethereum Blockchain
+
+```bash
+cd .../ethereum-contract
+anvil
+```
+
+Keep running. Note the default account and private key from output.
+
+### 2. Deploy Ethereum Contract
+
+```bash
+cd .../ethereum-contract
+./deploy.sh
+```
+
+### 3. Deploy Sui Contract
+
+```bash
+cd .../sui-contract
+./deploy.sh
+```
+
+No need to start Sui - devnet is public and always running.
+
+### 4. Configure MetaMask
+
+Add network:
+- Network Name: Anvil Localhost
+- RPC URL: http://127.0.0.1:8545
+- Chain ID: 31337
+
+Import account:
+- Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+Import IBT token:
+- Token Address: (from deploy.sh output or App.jsx)
+- Symbol: IBT
+- Decimals: 18
+
+### 5. Configure Sui Wallet
+
+- Switch network to Devnet
+- Verify address: 0x1476da5ccef9917f4ecd4a7494522154f82bb231fab974e81a20fad8e5938b0e
+
+### 6. Start Web Application
+
+```bash
+cd .../bridge-app
+npm install
+npm run dev
+```
+
+Open: http://localhost:3000/
+
+## Usage
+
+1. Connect both wallets
+2. Select transfer direction
+3. Enter amount
+4. Click Bridge Tokens
+5. Confirm transactions
+
+## Restart After Reboot
+
+```bash
+# Terminal 1
+cd .../ethereum-contract
+anvil
+
+# Terminal 2
+cd .../ethereum-contract
+./deploy.sh
+
+# Terminal 3
+cd .../bridge-app
+npm run dev
+```
+
+Sui devnet does not need restarting.
+(Sui)
+You ONLY need to run deploy.sh when:
+First time setup
+You want to deploy a new/updated contract
+The contract addresses in App.jsx are missing or wrong
+
+
+
+## Technical Details
+
+- Ethereum: ERC20 token with 18 decimals on localhost (Anvil)
+- Sui: Coin standard with 9 decimals on devnet
+- Bridge automatically converts between decimal formats

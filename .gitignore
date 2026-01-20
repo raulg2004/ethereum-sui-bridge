@@ -1,0 +1,33 @@
+# Node modules
+bridge-app/node_modules/
+node_modules/
+
+# Build outputs
+ethereum-contract/out/
+ethereum-contract/cache/
+ethereum-contract/lib/
+sui-contract/build/
+sui-contract/Pub.local.toml
+bridge-app/dist/
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp

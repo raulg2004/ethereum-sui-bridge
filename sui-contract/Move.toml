@@ -1,0 +1,14 @@
+[package]
+name = "ibt_token"
+version = "0.0.1"
+edition = "2024.beta"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+
+[addresses]
+ibt_token = "0x0"
+
+[environments]
+local = "35e87c46"
+devnet = "a9149565"
